@@ -13,6 +13,14 @@ students = [
     {'first_name': 'Петя'},
 ]
 # ???
+student_names = [student.get('first_name') for student in students]
+
+verifiable_names = []
+
+for name in student_names:
+    if name not in verifiable_names:
+        verifiable_names.append(name)
+        print(f'{name}: {student_names.count(name)}')
 
 
 # Задание 2
@@ -27,7 +35,16 @@ students = [
     {'first_name': 'Оля'},
 ]
 # ???
+student_names = [student.get('first_name') for student in students]
 
+verifiable_names = []
+count_name = {}
+
+for name in student_names:
+    if name not in verifiable_names:
+        verifiable_names.append(name)
+        count_name[name] = student_names.count(name)
+print(max(count_name, key=count_name.get))
 
 # Задание 3
 # Есть список учеников в нескольких классах, нужно вывести самое частое имя в каждом классе.
