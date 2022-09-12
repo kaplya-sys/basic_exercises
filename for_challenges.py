@@ -68,6 +68,5 @@ groups = [
     ['Вася', 'Маша', 'Саша', 'Женя'],
 ]
 # ???
-delimiter = ', '
 for i in range(len(groups)):
-    print(f'Группа {i + 1}: {delimiter.join(groups[i])}')
+    print(f"Группа {i + 1}: {', '.join(groups[i])}")
