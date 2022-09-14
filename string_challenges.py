@@ -24,19 +24,19 @@ print(count)
 # Вывести количество слов в предложении
 sentence = 'Мы приехали в гости'
 # ???
-print(len(sentence.split(' ')))
+print(len(sentence.split()))
 
 # Вывести первую букву каждого слова на отдельной строке
 sentence = 'Мы приехали в гости'
 # ???
-for word in sentence.split(' '):
+for word in sentence.split():
     print(word[0])
 
 
 # Вывести усреднённую длину слова в предложении
 sentence = 'Мы приехали в гости'
 # ???
-list_words = sentence.split(' ')
+list_words = sentence.split()
 summ_words = 0
 
 for word in list_words:

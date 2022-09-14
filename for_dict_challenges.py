@@ -12,16 +12,18 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Петя'},
 ]
-# ???
-student_names = [student.get('first_name') for student in students]
+# ???        
+count_names = {}        
+        
+for student in students:
+    name = student.get('first_name')
+    if name in count_names:
+        count_names[name] += 1
+    else:
+        count_names[name] = 1
 
-verifiable_names = []
-
-for name in student_names:
-    if name not in verifiable_names:
-        verifiable_names.append(name)
-        print(f'{name}: {student_names.count(name)}')
-
+for key in count_names:
+    print(f"{key}: {count_names[key]}")
 
 # Задание 2
 # Дан список учеников, нужно вывести самое часто повторящееся имя
@@ -35,16 +37,18 @@ students = [
     {'first_name': 'Оля'},
 ]
 # ???
-student_names = [student.get('first_name') for student in students]
+count_names = {}        
+        
+for student in students:
+    name = student.get('first_name')
+    if name in count_names:
+        count_names[name] += 1
+    else:
+        count_names[name] = 1
+        
+common_name = max(count_names, key=count_names.get)
 
-verifiable_names = []
-count_names = {}
-
-for name in student_names:
-    if name not in verifiable_names:
-        verifiable_names.append(name)
-        count_names[name] = student_names.count(name)
-print(max(count_names, key=count_names.get))
+print(common_name)
 
 # Задание 3
 # Есть список учеников в нескольких классах, нужно вывести самое частое имя в каждом классе.
@@ -69,18 +73,19 @@ school_students = [
     ],
 ]
 # ???
-student_names = [[student.get('first_name') for student in students] for students in school_students
-]
-
-for i in range(len(student_names)):
-    verifiable_names = []
-    count_names = {}
+for class_number, students in enumerate(school_students, start=1):
+    count_names = {} 
     
-    for name in student_names[i]:
-        if name not in verifiable_names:
-            verifiable_names.append(name)
-            count_names[name] = student_names[i].count(name)
-    print(f'Самое частое имя в классе {i + 1}: {max(count_names, key=count_names.get)}')
+    for student in students:
+        name = student.get('first_name')
+        if name in count_names:
+            count_names[name] += 1
+        else:
+            count_names[name] = 1
+            
+    common_name = max(count_names, key=count_names.get)
+            
+    print(f'Самое частое имя в классе {class_number}: {common_name}')
 
 # Задание 4
 # Для каждого класса нужно вывести количество девочек и мальчиков в нём.
@@ -111,6 +116,7 @@ for school_class in school:
             boys += 1
         else:
             girls += 1
+            
     print(f"Класс {school_class['class']}: девочки {girls}, мальчики {boys}")
 
 
@@ -147,6 +153,9 @@ for school_class in school:
     
     count_boys_in_class[school_class['class']] = boys
     count_girls_in_class[school_class['class']] = girls
+    
+common_boys = max(count_boys_in_class, key=count_boys_in_class.get)
+common_girls = max(count_girls_in_class, key=count_girls_in_class.get)
 
-print(f'Больше всего мальчиков в классе {max(count_boys_in_class, key=count_boys_in_class.get)}')
-print(f'Больше всего девочек в классе {max(count_girls_in_class, key=count_girls_in_class.get)}')
+print(f'Больше всего мальчиков в классе {common_boys}')
+print(f'Больше всего девочек в классе {common_girls}')

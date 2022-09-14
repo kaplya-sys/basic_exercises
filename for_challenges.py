@@ -16,7 +16,8 @@ for name in names:
 names = ['Оля', 'Петя', 'Вася', 'Маша']
 # ???
 for name in names:
-    print(f'{name}: {len(name)}')
+    len_name = len(name)
+    print(f'{name}: {len_name}')
 
 # Задание 3
 # Необходимо вывести имена всех учеников из списка, рядом с именем вывести пол ученика
@@ -51,8 +52,9 @@ groups = [
 # ???
 print(f'Всего {len(groups)} группы.')
 
-for i in range(len(groups)):
-    print(f'Группа {i + 1}: {len(groups[i])} ученика.')
+for num, group in enumerate(groups, start=1):
+    len_group = len(group)
+    print(f'Группа {num}: {len_group} ученика.')
 
 
 
@@ -68,5 +70,6 @@ groups = [
     ['Вася', 'Маша', 'Саша', 'Женя'],
 ]
 # ???
-for i in range(len(groups)):
-    print(f"Группа {i + 1}: {', '.join(groups[i])}")
+for num, group in enumerate(groups, start=1):
+    names = ', '.join(group)
+    print(f"Группа {num}: {names}")
