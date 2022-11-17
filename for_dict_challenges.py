@@ -12,8 +12,18 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Петя'},
 ]
-# ???
+# ???        
+count_names = {}        
+        
+for student in students:
+    name = student.get('first_name')
+    if name in count_names:
+        count_names[name] += 1
+    else:
+        count_names[name] = 1
 
+for key in count_names:
+    print(f"{key}: {count_names[key]}")
 
 # Задание 2
 # Дан список учеников, нужно вывести самое часто повторящееся имя
@@ -27,7 +37,18 @@ students = [
     {'first_name': 'Оля'},
 ]
 # ???
+count_names = {}        
+        
+for student in students:
+    name = student.get('first_name')
+    if name in count_names:
+        count_names[name] += 1
+    else:
+        count_names[name] = 1
+        
+common_name = max(count_names, key=count_names.get)
 
+print(common_name)
 
 # Задание 3
 # Есть список учеников в нескольких классах, нужно вывести самое частое имя в каждом классе.
@@ -52,7 +73,19 @@ school_students = [
     ],
 ]
 # ???
-
+for class_number, students in enumerate(school_students, start=1):
+    count_names = {} 
+    
+    for student in students:
+        name = student.get('first_name')
+        if name in count_names:
+            count_names[name] += 1
+        else:
+            count_names[name] = 1
+            
+    common_name = max(count_names, key=count_names.get)
+            
+    print(f'Самое частое имя в классе {class_number}: {common_name}')
 
 # Задание 4
 # Для каждого класса нужно вывести количество девочек и мальчиков в нём.
@@ -73,6 +106,18 @@ is_male = {
     'Даша': False,
 }
 # ???
+for school_class in school:
+    students = school_class.get('students')
+    girls = 0
+    boys = 0
+    
+    for name in students:
+        if is_male.get(name['first_name']):
+            boys += 1
+        else:
+            girls += 1
+            
+    print(f"Класс {school_class['class']}: девочки {girls}, мальчики {boys}")
 
 
 # Задание 5
@@ -92,4 +137,25 @@ is_male = {
     'Миша': True,
 }
 # ???
+count_boys_in_class = {}
+count_girls_in_class = {}
 
+for school_class in school:
+    students = school_class.get('students')
+    girls = 0
+    boys = 0
+    
+    for name in students:
+        if is_male.get(name['first_name']):
+            boys += 1
+        else:
+            girls += 1
+    
+    count_boys_in_class[school_class['class']] = boys
+    count_girls_in_class[school_class['class']] = girls
+    
+common_boys = max(count_boys_in_class, key=count_boys_in_class.get)
+common_girls = max(count_girls_in_class, key=count_girls_in_class.get)
+
+print(f'Больше всего мальчиков в классе {common_boys}')
+print(f'Больше всего девочек в классе {common_girls}')
